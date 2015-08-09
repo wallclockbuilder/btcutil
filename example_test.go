@@ -74,3 +74,17 @@ func ExampleAmount_unitConversions() {
 	// Satoshi to MicroBTC: 444333222111 μBTC
 	// Satoshi to Satoshi: 44433322211100 Satoshi
 }
+
+func ExampleAmount_Mulf64() {
+	// Multiply 100 Satoshis by 66%
+	a := btcutil.Amount(100)
+	r := a.MulF64(0.66)
+	fmt.Println(r.ToUnit(btcutil.AmountSatoshi)) // 66 Satoshis
+
+	// Multiply 100 by 2/3.
+	r = a.MulF64(2.0 / 3)
+	fmt.Println(r.ToUnit(btcutil.AmountSatoshi))
+	// Output:
+	// 66
+	// 67
+}
