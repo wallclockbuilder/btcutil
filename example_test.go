@@ -75,16 +75,23 @@ func ExampleAmount_unitConversions() {
 	// Satoshi to Satoshi: 44433322211100 Satoshi
 }
 
-func ExampleAmount_Mulf64() {
-	// Multiply 100 Satoshis by 66%
+func ExampleAmount_MulF64() {
+	// Create 100 Satoshis
 	a := btcutil.Amount(100)
-	r := a.MulF64(0.66)
-	fmt.Println(r.ToUnit(btcutil.AmountSatoshi)) // 66 Satoshis
 
-	// Multiply 100 by 2/3.
+	// Multiply 100 Satoshis by 66.3%
+	r := a.MulF64(0.663)
+	fmt.Println(r.ToUnit(btcutil.AmountSatoshi))
+
+	// Multiply 100 by 2/3
 	r = a.MulF64(2.0 / 3)
+	fmt.Println(r.ToUnit(btcutil.AmountSatoshi))
+
+	// Multiply 100 Satoshi by 0.5
+	r = a.MulF64(0.5)
 	fmt.Println(r.ToUnit(btcutil.AmountSatoshi))
 	// Output:
 	// 66
 	// 67
+	// 50
 }
